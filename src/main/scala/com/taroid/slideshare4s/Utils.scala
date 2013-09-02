@@ -14,7 +14,7 @@ private object Utils {
 
   def createUrlWithParams(url: String, params: (String, Any)*): String = {
     require(url != null)
-    require(params.forall(_ != null))
+    require(params.forall(p => p != null && p._2 != null))
 
     val builder = params.foldLeft(new StringBuilder(url).append("?")) {
       (b, p) => b.append(p._1).append("=").append(p._2.toString).append("&")
