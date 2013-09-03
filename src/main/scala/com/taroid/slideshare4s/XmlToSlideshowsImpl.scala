@@ -21,7 +21,8 @@ private class XmlToSlideshowsImpl(private val dateFormat: DateFormat) extends Xm
         thumbnailUrl = (e \ TAG_THUMB_URL).text,
         created = dateFormat.parse((e \ TAG_CREATED).text),
         updated = dateFormat.parse((e\ TAG_UPDATED).text),
-        language = (e \ TAG_LANG).text
+        language = (e \ TAG_LANG).text,
+        embed = (e \ TAG_EMBED).text
       )
     }
   }
@@ -38,4 +39,5 @@ private object XmlToSlideshowsImpl {
   private val TAG_CREATED = "Created"
   private val TAG_UPDATED = "Updated"
   private val TAG_LANG = "Language"
+  private val TAG_EMBED = "Embed"
 }

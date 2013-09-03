@@ -20,6 +20,7 @@ class XmlToSlideshowsImplTest extends Specification with Mockito {
                                      |  <Created>Thu Jan 01 00:00:00 +0900 2013</Created>
                                      |  <Updated>Thu Jan 01 01:00:00 +0900 2013</Updated>
                                      |  <Language>ff</Language>
+                                     |  <Embed>ggg</Embed>
                                      | </Slideshow>
                                      |</Slideshows>
                                    """.stripMargin)
@@ -51,7 +52,8 @@ class XmlToSlideshowsImplTest extends Specification with Mockito {
         thumbnailUrl = "eee",
         created = dateFormat.parse("Thu Jan 01 00:00:00 +0900 2013"),
         updated = dateFormat.parse("Thu Jan 01 01:00:00 +0900 2013"),
-        language = "ff"
+        language = "ff",
+        embed = "ggg"
       )))
     }
   }

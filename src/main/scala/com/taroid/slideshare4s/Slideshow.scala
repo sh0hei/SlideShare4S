@@ -13,6 +13,7 @@ import java.util.Date
  * @param created 作成日
  * @param updated 更新日
  * @param language 言語
+ * @param embed 埋め込みタグ
  */
 case class Slideshow(
   id: Long,
@@ -23,7 +24,8 @@ case class Slideshow(
   thumbnailUrl: String,
   created: Date,
   updated: Date,
-  language: String
+  language: String,
+  embed: String
 ) {
   require(title != null)
   require(username != null)
@@ -33,4 +35,5 @@ case class Slideshow(
   require(created != null)
   require(updated != null)
   require(language != null)
+  require(embed != null)
 }
