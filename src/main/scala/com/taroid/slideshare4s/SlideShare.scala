@@ -1,5 +1,7 @@
 package com.taroid.slideshare4s
 
+import java.text.SimpleDateFormat
+
 /**
  * SlideShareのAPI
  */
@@ -33,7 +35,10 @@ object SlideShare {
     require(sharedSecret != null)
     require(sharedSecret.size > 0)
 
-    return new SlideShareImpl(apiKey, sharedSecret)
+    val dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy")
+    val xmlToSlideshows = new XmlToSlideshowsImpl(dateFormat)
+
+    return new SlideShareImpl(apiKey, sharedSecret, scala.xml.XML, xmlToSlideshows)
   }
 }
 
