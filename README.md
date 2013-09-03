@@ -5,16 +5,16 @@
 ## Features
 
 * Get some information of slideshows
-** ID
-** Title
-** User name
-** Description
-** URL
-** Thumbnail URL
-** Creation time
-** Updated time
-** Language
-** Embed tags
+ * ID
+ * Title
+ * User name
+ * Description
+ * URL
+ * Thumbnail URL
+ * Creation time
+ * Updated time
+ * Language
+ * Embed tags
 * Search by keywords and languages
 
 ## Sample
