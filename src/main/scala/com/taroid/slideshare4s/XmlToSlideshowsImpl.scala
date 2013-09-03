@@ -4,7 +4,11 @@ import scala.xml.Elem
 import java.text.DateFormat
 
 private class XmlToSlideshowsImpl(private val dateFormat: DateFormat) extends XmlToSlideshows {
-  def toSlideshows(root: Elem): Seq[Slideshow] = {
+  require(dateFormat != null)
+
+  def convert(root: Elem): Seq[Slideshow] = {
+    require(root != null)
+
     import XmlToSlideshowsImpl._
 
     (root \ TAG_SLIDESHOW) map { e =>

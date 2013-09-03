@@ -4,5 +4,5 @@ import scala.xml.Elem
 
 trait XmlToSlideshows {
 
-  def toSlideshows(root: Elem): Seq[Slideshow]
+  def convert(root: Elem): Seq[Slideshow]
 }

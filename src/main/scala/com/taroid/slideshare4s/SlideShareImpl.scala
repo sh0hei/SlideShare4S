@@ -30,7 +30,7 @@ private class SlideShareImpl(
       "sort" -> query.sortOrder
     )
 
-    xmlToSlideshows.toSlideshows(xmlLoader.load(url))
+    xmlToSlideshows.convert(xmlLoader.load(url))
   }
 }
 

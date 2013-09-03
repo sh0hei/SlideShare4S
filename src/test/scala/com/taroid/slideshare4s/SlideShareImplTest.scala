@@ -12,13 +12,13 @@ class SlideShareImplTest extends Specification with BeforeExample with Mockito {
 
   private var xmlLoader: XMLLoader[Elem] = null
 
-  private var xmlToSlideshows: XmlToSlideshows = null
+  private var xmlToSlideshows: XmlToSlideshowsImpl = null
 
   private var ss: SlideShareImpl = null
 
   def before = {
     xmlLoader = mock[XMLLoader[Elem]]
-    xmlToSlideshows = mock[XmlToSlideshows]
+    xmlToSlideshows = mock[XmlToSlideshowsImpl]
     ss = new SlideShareImpl("apiKey", "sharedSecret", xmlLoader, xmlToSlideshows)
   }
 
@@ -51,7 +51,7 @@ class SlideShareImplTest extends Specification with BeforeExample with Mockito {
 
     "XmlLoader#loadでXMLを取得した後にXmlToSlideshows#toSlideshowsを呼び出す" in {
       ss.searchSlideshows(Query("hoge"))
-      there was one(xmlLoader).load(anyString) andThen one(xmlToSlideshows).toSlideshows(any[Elem])
+      there was one(xmlLoader).load(anyString) andThen one(xmlToSlideshows).convert(any[Elem])
     }
   }
 }
