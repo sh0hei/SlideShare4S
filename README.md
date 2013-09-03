@@ -2,6 +2,21 @@
 
 **SlideShare4S** is a library for Scala to use SlideShare API.
 
+## Features
+
+* Get some information of slideshows
+** ID
+** Title
+** User name
+** Description
+** URL
+** Thumbnail URL
+** Creation time
+** Updated time
+** Language
+** Embed tags
+* Search by keywords and languages
+
 ## Sample
 
 ```Scala
