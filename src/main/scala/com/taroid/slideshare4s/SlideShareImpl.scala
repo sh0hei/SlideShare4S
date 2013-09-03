@@ -14,7 +14,7 @@ private class SlideShareImpl(
   assert(sharedSecret != null)
   assert(sharedSecret.size > 0)
 
-  override def searchSlideshow(query: Query): Seq[Slideshow] = {
+  override def searchSlideshows(query: Query): Seq[Slideshow] = {
     require(query != null)
 
     import SlideShareImpl._

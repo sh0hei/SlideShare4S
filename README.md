@@ -15,7 +15,7 @@ object Main {
     val ss = SlideShare(apiKey, sharedSecret)
     val query = Query(words = "scala", itemsPerPage = 10, language = "ja", sortOrder = SortOrder.LATEST)
 
-    ss.searchSlideshow(query).foreach(println)
+    ss.searchSlideshows(query).foreach(println)
   }
 }
 ```

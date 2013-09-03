@@ -18,7 +18,7 @@ trait SlideShare {
    * @param query 検索クエリ
    * @return 検索にヒットしたスライドのシーケンス
    */
-  def searchSlideshow(query: Query): Seq[Slideshow]
+  def searchSlideshows(query: Query): Seq[Slideshow]
 }
 
 object SlideShare {
