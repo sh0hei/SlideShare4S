@@ -1,4 +1,4 @@
-name := "SlideShare4J"
+name := "SlideShare4S"
 
 organization := "com.taroid"
 
