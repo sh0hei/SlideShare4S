@@ -3,7 +3,7 @@ package com.taroid.slideshare4s
 import scala.xml.Elem
 import java.text.DateFormat
 
-class XmlToSlideshowsImpl(private val dateFormat: DateFormat) extends XmlToSlideshows {
+private class XmlToSlideshowsImpl(private val dateFormat: DateFormat) extends XmlToSlideshows {
   def toSlideshows(root: Elem): Seq[Slideshow] = {
     import XmlToSlideshowsImpl._
 
@@ -23,7 +23,7 @@ class XmlToSlideshowsImpl(private val dateFormat: DateFormat) extends XmlToSlide
   }
 }
 
-object XmlToSlideshowsImpl {
+private object XmlToSlideshowsImpl {
   private val TAG_SLIDESHOW = "Slideshow"
   private val TAG_ID = "ID"
   private val TAG_TITLE = "Title"
