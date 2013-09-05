@@ -4,10 +4,14 @@ import scala.xml.Elem
 import java.text.DateFormat
 
 private class XmlToSlideshowsImpl(private val dateFormat: DateFormat) extends XmlToSlideshows {
-  require(dateFormat != null)
+  if(dateFormat == null) {
+    throw new NullPointerException("dateFormat must not be null.")
+  }
 
   def convert(root: Elem): Seq[Slideshow] = {
-    require(root != null)
+    if(root == null) {
+      throw new NullPointerException("root must not be null.")
+    }
 
     import XmlToSlideshowsImpl._
 

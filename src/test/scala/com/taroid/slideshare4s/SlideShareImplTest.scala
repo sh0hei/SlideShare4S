@@ -24,8 +24,8 @@ class SlideShareImplTest extends Specification with BeforeExample with Mockito {
 
   "searchSlideshows" should {
     "引数にnullを渡すと例外を投げる" in {
-      {ss.searchSlideshows(null, mock[Paging])} must throwA[IllegalArgumentException];
-      {ss.searchSlideshows(mock[Query], null)} must throwA[IllegalArgumentException]
+      {ss.searchSlideshows(null, mock[Paging])} must throwA[NullPointerException];
+      {ss.searchSlideshows(mock[Query], null)} must throwA[NullPointerException]
     }
 
     "引数の検索クエリの各プロパティを参照する" in {
@@ -36,7 +36,7 @@ class SlideShareImplTest extends Specification with BeforeExample with Mockito {
       query.sortOrder returns SortOrder.RELEVANCE
 
       // exercise
-      ss.searchSlideshows(query, Paging(0, 0))
+      ss.searchSlideshows(query, Paging(12, 1))
 
       // verify
       there was one(query).words
@@ -59,7 +59,7 @@ class SlideShareImplTest extends Specification with BeforeExample with Mockito {
     }
 
     "XmlLoader#loadでXMLを取得した後にXmlToSlideshows#toSlideshowsを呼び出す" in {
-      ss.searchSlideshows(Query("hoge"), Paging(1, 12))
+      ss.searchSlideshows(Query("hoge"), Paging(12, 1))
       there was one(xmlLoader).load(anyString) andThen one(xmlToSlideshows).convert(any[Elem])
     }
   }

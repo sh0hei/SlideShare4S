@@ -27,7 +27,7 @@ class XmlToSlideshowsImplTest extends Specification with Mockito {
 
   "convert" should {
     "引数にnullを渡すと例外を投げる" in {
-      {new XmlToSlideshowsImpl(mock[DateFormat]).convert(null)} must throwA[IllegalArgumentException]
+      {new XmlToSlideshowsImpl(mock[DateFormat]).convert(null)} must throwA[NullPointerException]
     }
 
     "引数にスライド情報を渡すとスライド1つにつきDateFormat#parseを2回呼び出す" in {

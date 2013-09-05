@@ -6,7 +6,7 @@ class UtilsTest extends Specification {
 
   "toSha1Hex" should {
     "nullを渡すと例外を投げる" in {
-      {Utils.toSha1Hex(null)} must throwA[IllegalArgumentException]
+      {Utils.toSha1Hex(null)} must throwA[NullPointerException]
     }
 
     "文字列「Hello」を渡すとSHA-1で変換された文字列を返す" in {
@@ -16,17 +16,17 @@ class UtilsTest extends Specification {
 
   "createUrlWithParams" should {
     "第1引数にnullを渡すと例外を投げる" in {
-      {Utils.createUrlWithParams(null)} must throwA[IllegalArgumentException]
+      {Utils.createUrlWithParams(null)} must throwA[NullPointerException]
     }
 
     "第2引数以降にnullを渡すと例外を投げる" in {
-      {Utils.createUrlWithParams("", null)} must throwA[IllegalArgumentException]
-      {Utils.createUrlWithParams("", "" -> "", null)} must throwA[IllegalArgumentException]
+      {Utils.createUrlWithParams("", null)} must throwA[NullPointerException]
+      {Utils.createUrlWithParams("", "" -> "", null)} must throwA[NullPointerException]
     }
 
     "第2引数以降の要素にnullを指定すると例外を投げる" in {
-      {Utils.createUrlWithParams("", "" -> null)} must throwA[IllegalArgumentException]
-      {Utils.createUrlWithParams("", "" -> "", "" -> null)} must throwA[IllegalArgumentException]
+      {Utils.createUrlWithParams("", "" -> null)} must throwA[NullPointerException]
+      {Utils.createUrlWithParams("", "" -> "", "" -> null)} must throwA[NullPointerException]
     }
 
     "第2引数以降がない場合は第1引数をそのまま返す" in {

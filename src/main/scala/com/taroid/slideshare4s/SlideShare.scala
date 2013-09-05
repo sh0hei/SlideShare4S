@@ -31,9 +31,14 @@ object SlideShare {
    * @return SlideShareインスタンス
    */
   def apply(apiKey: String, sharedSecret: String): SlideShare = {
-    require(apiKey != null)
+    if(apiKey == null) {
+      throw new NullPointerException("apiKey must not be null.")
+    }
     require(apiKey.size > 0)
-    require(sharedSecret != null)
+
+    if(sharedSecret == null) {
+      throw new NullPointerException("sharedSecret must not be null.")
+    }
     require(sharedSecret.size > 0)
 
     val dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy")

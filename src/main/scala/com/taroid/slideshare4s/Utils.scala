@@ -5,7 +5,9 @@ import java.security.MessageDigest
 private object Utils {
 
   def toSha1Hex(str: String): String = {
-    require(str != null)
+    if(str == null) {
+      throw new NullPointerException("str must not be null.")
+    }
 
     val messageDigest = MessageDigest.getInstance("SHA-1")
     messageDigest.update(str.getBytes)
@@ -13,8 +15,14 @@ private object Utils {
   }
 
   def createUrlWithParams(url: String, params: (String, Any)*): String = {
-    require(url != null)
-    require(params.forall(p => p != null && p._2 != null))
+    if(url == null) {
+      throw new NullPointerException("url must not be null.")
+    }
+
+    assert(params != null)
+    if(params.exists(p => p == null || p._2 == null)) {
+      throw new NullPointerException("params must not contain null.")
+    }
 
     val builder = params.foldLeft(new StringBuilder(url).append("?")) {
       (b, p) => b.append(p._1).append("=").append(p._2.toString).append("&")

@@ -9,14 +9,23 @@ private class SlideShareImpl(
   private val xmlLoader: XMLLoader[Elem],
   private val xmlToSlideshows: XmlToSlideshows) extends SlideShare {
 
-  assert(apiKey != null)
+  if(apiKey == null) {
+    throw new NullPointerException("apiKey must not be null.")
+  }
   assert(apiKey.size > 0)
-  assert(sharedSecret != null)
+
+  if(sharedSecret == null) {
+    throw new NullPointerException("sharedSecret must not be null.")
+  }
   assert(sharedSecret.size > 0)
 
   override def searchSlideshows(query: Query, paging: Paging): Seq[Slideshow] = {
-    require(query != null)
-    require(paging != null)
+    if(query == null) {
+      throw new NullPointerException("query must not be null.")
+    }
+    if(paging == null) {
+      throw new NullPointerException("paging must not be null.")
+    }
 
     import SlideShareImpl._
 

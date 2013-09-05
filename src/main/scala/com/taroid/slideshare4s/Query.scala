@@ -13,8 +13,17 @@ case class Query(
   language: String = "**",
   sortOrder: SortOrder = SortOrder.RELEVANCE
 ) {
-  require(words != null)
+  if(words == null) {
+    throw new NullPointerException("words must not be null.")
+  }
+
   require(words.size > 0)
-  require(language != null)
-  require(sortOrder != null)
+
+  if(language == null) {
+    throw new NullPointerException("language must not be null.")
+  }
+
+  if(sortOrder == null) {
+    throw new NullPointerException("sortOrder must not be null.")
+  }
 }
