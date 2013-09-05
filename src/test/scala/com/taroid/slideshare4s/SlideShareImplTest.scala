@@ -24,33 +24,42 @@ class SlideShareImplTest extends Specification with BeforeExample with Mockito {
 
   "searchSlideshows" should {
     "引数にnullを渡すと例外を投げる" in {
-      {
-        ss.searchSlideshows(null)
-      } must throwA[IllegalArgumentException]
+      {ss.searchSlideshows(null, mock[Paging])} must throwA[IllegalArgumentException];
+      {ss.searchSlideshows(mock[Query], null)} must throwA[IllegalArgumentException]
     }
 
     "引数の検索クエリの各プロパティを参照する" in {
       // setup
       val query = mock[Query]
       query.words returns ""
-      query.page returns 0
-      query.itemsPerPage returns 0
       query.language returns ""
       query.sortOrder returns SortOrder.RELEVANCE
 
       // exercise
-      ss.searchSlideshows(query)
+      ss.searchSlideshows(query, Paging(0, 0))
 
       // verify
       there was one(query).words
-      there was one(query).page
-      there was one(query).itemsPerPage
       there was one(query).language
       there was one(query).sortOrder
     }
 
+    "引数のページングの各プロパティを参照する" in {
+      // setup
+      val paging = mock[Paging]
+      paging.page returns 1
+      paging.itemsPerPage returns 12
+
+      // exercise
+      ss.searchSlideshows(Query("hoge"), paging)
+
+      // verify
+      there was one(paging).page
+      there was one(paging).itemsPerPage
+    }
+
     "XmlLoader#loadでXMLを取得した後にXmlToSlideshows#toSlideshowsを呼び出す" in {
-      ss.searchSlideshows(Query("hoge"))
+      ss.searchSlideshows(Query("hoge"), Paging(1, 12))
       there was one(xmlLoader).load(anyString) andThen one(xmlToSlideshows).convert(any[Elem])
     }
   }

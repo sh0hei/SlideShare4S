@@ -24,13 +24,14 @@ import com.taroid.slideshare4s.{SortOrder, SlideShare, Query}
 
 object Main {
   def main(args: Array[String]) {
-    val apiKey = System.getenv("SLIDESHARE_API_KEY")
-    val sharedSecret = System.getenv("SLIDESHARE_SHARED_SECRET")
+    val apiKey = "YOUR_API_KEY"
+    val sharedSecret = "YOUR_SHARED_SECRET"
 
     val ss = SlideShare(apiKey, sharedSecret)
-    val query = Query(words = "scala", itemsPerPage = 10, language = "ja", sortOrder = SortOrder.LATEST)
+    val query = Query(words="scala", language="ja", sortOrder=SortOrder.LATEST)
+    val paging = Paging(itemsPerPage=12, page=1)
 
-    ss.searchSlideshows(query).foreach(println)
+    ss.searchSlideshows(query, paging).foreach(println)
   }
 }
 ```

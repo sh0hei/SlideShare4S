@@ -14,8 +14,9 @@ private class SlideShareImpl(
   assert(sharedSecret != null)
   assert(sharedSecret.size > 0)
 
-  override def searchSlideshows(query: Query): Seq[Slideshow] = {
+  override def searchSlideshows(query: Query, paging: Paging): Seq[Slideshow] = {
     require(query != null)
+    require(paging != null)
 
     import SlideShareImpl._
 
@@ -24,10 +25,10 @@ private class SlideShareImpl(
       "ts" -> currentTimeSeconds,
       "hash" -> hash,
       "q" -> query.words,
-      "page" -> query.page,
-      "items_per_page" -> query.itemsPerPage,
       "lang" -> query.language,
-      "sort" -> query.sortOrder
+      "sort" -> query.sortOrder,
+      "page" -> paging.page,
+      "items_per_page" -> paging.itemsPerPage
     )
 
     xmlToSlideshows.convert(xmlLoader.load(url))
