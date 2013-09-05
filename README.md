@@ -20,7 +20,7 @@
 ## Sample
 
 ```Scala
-import com.taroid.slideshare4s.{SortOrder, SlideShare, Query}
+import com.taroid.slideshare4s.{SortOrder, SlideShare, Query, Paging}
 
 object Main {
   def main(args: Array[String]) {
