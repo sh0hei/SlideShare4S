@@ -19,7 +19,7 @@ private class SlideShareImpl(
   }
   assert(sharedSecret.size > 0)
 
-  override def searchSlideshows(query: Query, paging: Paging): Seq[Slideshow] = {
+  override def searchSlideshows(query: Query, paging: Paging, detailed: Boolean): Seq[Slideshow] = {
     if(query == null) {
       throw new NullPointerException("query must not be null.")
     }

@@ -14,12 +14,16 @@ trait SlideShare {
 
   /**
    * 指定されたクエリに基づいてスライドを検索します。<br>
-   * ヒットしたスライドのシーケンスを返します。
+   * ヒットしたスライドのシーケンスを返します。<br>
+   * 引数{@code detailed}が{@literal true}の場合はヒットしたスライドの付加情報を取得します。
+   * この引数はオプションで、デフォルトでは{@literal false}が設定されます。
+   *
    * @param query 検索クエリ
    * @param paging 検索ページ
+   * @param detailed 詳細検索フラグ
    * @return 検索にヒットしたスライドのシーケンス
    */
-  def searchSlideshows(query: Query, paging: Paging): Seq[Slideshow]
+  def searchSlideshows(query: Query, paging: Paging, detailed: Boolean = false): Seq[Slideshow]
 }
 
 object SlideShare {
