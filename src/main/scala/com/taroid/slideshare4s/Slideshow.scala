@@ -1,6 +1,7 @@
 package com.taroid.slideshare4s
 
 import java.util.Date
+import com.taroid.slideshare4s.Slideshow.Extra
 
 /**
  * スライド
@@ -14,6 +15,7 @@ import java.util.Date
  * @param updated 更新日
  * @param language 言語
  * @param embed 埋め込みタグ
+ * @param extra 付加情報
  */
 case class Slideshow(
   id: Long,
@@ -25,7 +27,8 @@ case class Slideshow(
   created: Date,
   updated: Date,
   language: String,
-  embed: String
+  embed: String,
+  extra: Option[Extra] = None
 ) {
   if(title == null) {
     throw new NullPointerException("title must not be null.")
@@ -53,5 +56,24 @@ case class Slideshow(
   }
   if(embed == null) {
     throw new NullPointerException("embed must not be null.")
+  }
+  if(extra == null) {
+    throw new NullPointerException("extra must not be null.")
+  }
+}
+
+object Slideshow {
+
+  /**
+   * スライドに関する付加情報です。
+   *
+   * @param tags タグ
+   */
+  case class Extra(
+    tags: Seq[String]
+  ) {
+    if(tags == null) {
+      throw new NullPointerException("tags must not be null.")
+    }
   }
 }
