@@ -37,7 +37,8 @@ private class SlideShareImpl(
       "lang" -> query.language,
       "sort" -> query.sortOrder,
       "page" -> paging.page,
-      "items_per_page" -> paging.itemsPerPage
+      "items_per_page" -> paging.itemsPerPage,
+      "detailed" -> (if(detailed) "1" else "0")
     )
 
     xmlToSlideshows.convert(xmlLoader.load(url))

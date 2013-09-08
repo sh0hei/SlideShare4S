@@ -53,7 +53,8 @@ class XmlToSlideshowsImplTest extends Specification with Mockito {
         created = dateFormat.parse("Thu Jan 01 00:00:00 +0900 2013"),
         updated = dateFormat.parse("Thu Jan 01 01:00:00 +0900 2013"),
         language = "ff",
-        embed = "ggg"
+        embed = "ggg",
+        extra = None
       )))
     }
   }
