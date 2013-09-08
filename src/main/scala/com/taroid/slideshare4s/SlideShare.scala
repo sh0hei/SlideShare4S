@@ -24,6 +24,18 @@ trait SlideShare {
    * @return 検索にヒットしたスライドのシーケンス
    */
   def searchSlideshows(query: Query, paging: Paging, detailed: Boolean = false): Seq[Slideshow]
+
+  /**
+   * 指定されたタグを持つスライドを検索し、返します。<br>
+   * 引数{@code detailed}が{@literal true}の場合はヒットしたスライドの付加情報を取得します。
+   * この引数はオプションで、デフォルトでは{@literal false}が設定されます。
+   *
+   * @param tag 検索対象タグ
+   * @param paging 検索ページ
+   * @param detailed 詳細検索フラグ
+   * @return 検索にヒットしたスライドのシーケンス
+   */
+  def getSlideshowsByTag(tag: String, paging: Paging, detailed: Boolean = false): Seq[Slideshow]
 }
 
 object SlideShare {

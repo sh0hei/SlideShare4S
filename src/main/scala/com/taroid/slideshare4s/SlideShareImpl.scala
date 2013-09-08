@@ -2,6 +2,7 @@ package com.taroid.slideshare4s
 
 import scala.xml.Elem
 import scala.xml.factory.XMLLoader
+import com.taroid.slideshare4s.SlideShareImpl.Urls
 
 private class SlideShareImpl(
   val apiKey: String,
@@ -27,8 +28,6 @@ private class SlideShareImpl(
       throw new NullPointerException("paging must not be null.")
     }
 
-    import SlideShareImpl._
-
     val url = Utils.createUrlWithParams(Urls.SEARCH,
       "api_key" -> apiKey,
       "ts" -> currentTimeSeconds,
@@ -43,11 +42,34 @@ private class SlideShareImpl(
 
     xmlToSlideshows.convert(xmlLoader.load(url))
   }
+
+  def getSlideshowsByTag(tag: String, paging: Paging, detailed: Boolean): Seq[Slideshow] = {
+    if(tag == null) {
+      throw new NullPointerException("tag must not be null.")
+    }
+    if(paging == null) {
+      throw new NullPointerException("paging must not be null.")
+    }
+
+    val url = Utils.createUrlWithParams(Urls.GET_BY_TAG,
+      "api_key" -> apiKey,
+      "ts" -> currentTimeSeconds,
+      "hash" -> hash,
+      "tag" -> tag,
+      "limit" -> paging.limit,
+      "offset" -> paging.offset,
+      "detailed" -> (if(detailed) "1" else "0")
+    )
+
+    println(url)
+    xmlToSlideshows.convert(xmlLoader.load(url))
+  }
 }
 
 private object SlideShareImpl {
   private object Urls {
     private val BASE = "https://www.slideshare.net/api/2/"
     val SEARCH = BASE + "search_slideshows"
+    val GET_BY_TAG = BASE + "get_slideshows_by_tag"
   }
 }
