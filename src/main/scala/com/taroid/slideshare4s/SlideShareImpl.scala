@@ -61,7 +61,27 @@ private class SlideShareImpl(
       "detailed" -> (if(detailed) "1" else "0")
     )
 
-    println(url)
+    xmlToSlideshows.convert(xmlLoader.load(url))
+  }
+
+  def getSlideshowsByUser(username: String, paging: Paging, detailed: Boolean): Seq[Slideshow] = {
+    if(username == null) {
+      throw new NullPointerException("username must not be null.")
+    }
+    if(paging == null) {
+      throw new NullPointerException("paging must not be null.")
+    }
+
+    val url = Utils.createUrlWithParams(Urls.GET_BY_USER,
+      "api_key" -> apiKey,
+      "ts" -> currentTimeSeconds,
+      "hash" -> hash,
+      "username_for" -> username,
+      "limit" -> paging.limit,
+      "offset" -> paging.offset,
+      "detailed" -> (if(detailed) "1" else "0")
+    )
+
     xmlToSlideshows.convert(xmlLoader.load(url))
   }
 }
@@ -71,5 +91,6 @@ private object SlideShareImpl {
     private val BASE = "https://www.slideshare.net/api/2/"
     val SEARCH = BASE + "search_slideshows"
     val GET_BY_TAG = BASE + "get_slideshows_by_tag"
+    val GET_BY_USER = BASE + "get_slideshows_by_user"
   }
 }

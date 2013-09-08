@@ -1,6 +1,6 @@
 # SlideShare4S
 
-**SlideShare4S** is a library for Scala to use SlideShare API.
+SlideShare4S is a library for **Scala** to use **SlideShare API**.
 
 ## Features
 
@@ -15,7 +15,10 @@
  * Updated time
  * Language
  * Embed tags
+ * etc...
 * Search by keywords and languages
+* Search by a tag
+* Search by a user
 
 ## Sample
 
@@ -38,5 +41,5 @@ object Main {
 
 ## License
 
-SlideShare4S is licensed under the Apache Licenses version 2.0.
+SlideShare4S is licensed under the **Apache Licenses version 2.0**.
 Please feel free to use it in your projects.
