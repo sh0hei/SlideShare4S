@@ -1,10 +1,12 @@
 package com.taroid.slideshare4s
 
-import org.specs2.mutable._
+import java.text.{DateFormat, SimpleDateFormat}
+import java.util.{Locale, Date}
+
 import org.specs2.mock._
-import java.text.{SimpleDateFormat, DateFormat}
+import org.specs2.mutable._
+
 import scala.xml.XML
-import java.util.Date
 
 class XmlToSlideshowsImplTest extends Specification with Mockito {
 
@@ -40,7 +42,7 @@ class XmlToSlideshowsImplTest extends Specification with Mockito {
     }
 
     "引数にスライド情報を渡すとSlideshowのリストを返す" in {
-      val dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy")
+      val dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss Z yyyy", Locale.US)
       val slideshows = new XmlToSlideshowsImpl(dateFormat).convert(xml)
 
       slideshows must haveTheSameElementsAs(List(Slideshow(
