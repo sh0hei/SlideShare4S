@@ -49,6 +49,18 @@ trait SlideShare {
    * @return 検索にヒットしたスライドのシーケンス
    */
   def getSlideshowsByUser(username: String, paging: Paging, detailed: Boolean = false): Seq[Slideshow]
+
+  /**
+   * 指定されたグループが所有するスライドを検索し、返します。<br>
+   * 引数{@code detailed}が{@literal true}の場合はヒットしたスライドの付加情報を取得します。
+   * この引数はオプションで、デフォルトでは{@literal false}が設定されます。
+   *
+   * @param groupname  検索対象グループ名
+   * @param paging 検索ページ
+   * @param detailed 詳細検索フラグ
+   * @return 検索にヒットしたスライドのシーケンス
+   */
+  def getSlideshowsByGroup(groupname: String, paging: Paging, detailed: Boolean = false): Seq[Slideshow]
 }
 
 object SlideShare {

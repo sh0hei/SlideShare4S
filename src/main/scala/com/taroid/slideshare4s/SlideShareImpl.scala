@@ -84,6 +84,27 @@ private class SlideShareImpl(
 
     xmlToSlideshows.convert(xmlLoader.load(url))
   }
+
+  def getSlideshowsByGroup(groupname: String, paging: Paging, detailed: Boolean): Seq[Slideshow] = {
+    if(groupname == null) {
+      throw new NullPointerException("username must not be null.")
+    }
+    if(paging == null) {
+      throw new NullPointerException("paging must not be null.")
+    }
+
+    val url = Utils.createUrlWithParams(Urls.GET_BY_USER,
+      "api_key" -> apiKey,
+      "ts" -> currentTimeSeconds,
+      "hash" -> hash,
+      "group_name" -> groupname,
+      "limit" -> paging.limit,
+      "offset" -> paging.offset,
+      "detailed" -> (if(detailed) "1" else "0")
+    )
+
+    xmlToSlideshows.convert(xmlLoader.load(url))
+  }
 }
 
 private object SlideShareImpl {
@@ -92,5 +113,6 @@ private object SlideShareImpl {
     val SEARCH = BASE + "search_slideshows"
     val GET_BY_TAG = BASE + "get_slideshows_by_tag"
     val GET_BY_USER = BASE + "get_slideshows_by_user"
+    val GET_BY_GROUP = BASE + "get_slideshows_by_group"
   }
 }

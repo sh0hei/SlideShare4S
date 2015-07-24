@@ -115,4 +115,30 @@ class SlideShareImplTest extends Specification with BeforeExample with Mockito {
       there was one(xmlLoader).load(anyString) andThen one(xmlToSlideshows).convert(any[Elem])
     }
   }
+
+  "getSlideshowsByGroup" should {
+    "引数にnullを渡すと例外を投げる" in {
+      {ss.getSlideshowsByGroup(null, mock[Paging])} must throwA[NullPointerException];
+      {ss.getSlideshowsByGroup("group", null)} must throwA[NullPointerException]
+    }
+
+    "引数のページングのlimitとoffsetを参照する" in {
+      // setup
+      val paging = mock[Paging]
+      paging.page returns 1
+      paging.itemsPerPage returns 12
+
+      // exercise
+      ss.getSlideshowsByGroup("group", paging)
+
+      // verify
+      there was one(paging).limit
+      there was one(paging).offset
+    }
+
+    "XmlLoader#loadでXMLを取得した後にXmlToSlideshows#toSlideshowsを呼び出す" in {
+      ss.getSlideshowsByGroup("group", Paging(12, 1))
+      there was one(xmlLoader).load(anyString) andThen one(xmlToSlideshows).convert(any[Elem])
+    }
+  }
 }
